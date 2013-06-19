@@ -27,13 +27,13 @@ Things that the template is missing
 Initializing our Objetive-C SDK.
 
 ```objective-c
-_client = [[UGClient alloc] initWithOrganizationId:@"YOUR APIGEE.COM USERNAME" withApplicationID:@"sandbox"];
+self.client = [[UGClient alloc] initWithOrganizationId:@"YOUR APIGEE.COM USERNAME" withApplicationID:@"sandbox"];
 ```
 Creating an entity with a NSMutableDictionary Literal
 
 ```objective-c
 NSMutableDictionary *book = @{ @"type":@"book", @"title":"The Great Gatsby", @"author":@"Fitzgerald"}; 
-UGClientResponse *response = [_client createEntity:book];
+UGClientResponse *response = [self.client createEntity:book];
 //Lets check if our response was accepted by the server, and add the created object to a collection called _objects
 if (response.transactionState == kUGClientResponseSuccess) {
     [_objects insertObject:response.response[@"entities"][0] atIndex:0];
@@ -43,7 +43,7 @@ Deleting a book
 
 ```objective-c
 NSDictionary *entity = [_objects objectAtIndex:indexPath.row];
-UGClientResponse * response = [_client removeEntity:@"book" entityID:entity[@"uuid"]];
+UGClientResponse * response = [self.client removeEntity:@"book" entityID:entity[@"uuid"]];
 if (response.transactionState == kUGClientResponseSuccess) {
     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
@@ -51,11 +51,26 @@ if (response.transactionState == kUGClientResponseSuccess) {
 Retrieving books from your UserGrid account.
 ```objective-c
 //Getting all of your books without a filtering query.
-UGClientResponse *result = [_client getEntities:@"book" query:nil];
+UGClientResponse *result = [self.client getEntities:@"book" query:nil];
 if (result.transactionState == kUGClientResponseSuccess) {
    _objects = result.response[@"entities"];
 } else {
    _objects = @[];
+}
+```
+
+Implementing a search bar delegate method to search for books with a query
+```objective-c
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    UGQuery * query = [[UGQuery alloc] init];
+    [query addRequirement:[NSString stringWithFormat:@"title='%@'", searchBar.text]];
+    UGClientResponse *result = [self.client getEntities:@"book" query:query];
+    if (result.transactionState == kUGClientResponseSuccess) {
+        _objects = result.response[@"entities"];
+    } else {
+        _objects = @[];
+    }
+    [self.tableView reloadData];
 }
 ```
 
