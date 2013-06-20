@@ -41,11 +41,14 @@ if (response.transactionState == kUGClientResponseSuccess) {
 Deleting a book
 
 ```objective-c
+[self.tableView beginUpdates];
+[_objects removeObjectAtIndex:indexPath.row];
 NSDictionary *entity = [_objects objectAtIndex:indexPath.row];
 UGClientResponse * response = [self.client removeEntity:@"book" entityID:entity[@"uuid"]];
 if (response.transactionState == kUGClientResponseSuccess) {
-    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+   [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
+[self.tableView endUpdates];
 ```
 Retrieving books from your UserGrid account.
 ```objective-c
