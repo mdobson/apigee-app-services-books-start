@@ -6,21 +6,20 @@ Some important point code snippets.
 
 Things that the template is missing
 
-* UI
-    1. Setup segue to the new book view named `@"newBook"`
-    2. Setup outlets in detail view for the following properties
-        * Title
-        * Author
-        * UUID
-* Code
-    1. Setup client intialization
-    2. Setup lookup of all books
-        * Set cell text label to book title
-    3. Display single book object in detail view
-        * Set values for title, author, and uuid in code.
-    4. Setup Adding a new book
-    5. Setup deleting a book
-    6. **Bonus!** Implement a search bar in the master view that uses a query to look a book up by title.
+### TODOs for completion
+
+1. Setup segue to the new book view named `@"newBook"`
+2. Setup outlets in detail view for the following properties
+    * Title
+    * Author
+    * UUID
+3. Setup client intialization
+4. Setup lookup of all books
+    * Make sure the objects appear in the `_objects` array
+    * Set title text of cell to the book title
+6. Setup Adding a new book
+7. Setup deleting a book
+8. **Bonus!** Implement a search bar in the master view that uses a query to look a book up by title.
 
 
 

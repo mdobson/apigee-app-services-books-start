@@ -35,9 +35,8 @@
     [super viewDidLoad];
     static NSString *orgName = @"YOUR APIGEE.COM USERNAME";
     static NSString *appName = @"sandbox";
-    //TODO: INITIALIZE YOUR CLIENT HERE
-	// Do any additional setup after loading the view, typically from a nib.
-    //TODO: RETRIEVE ALL BOOKS HERE.
+    //TODO: Step 3). Initialize your client here.
+    //TODO: Step 4). Retrieve all books here.
 
     
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
@@ -66,7 +65,7 @@
         _objects = [[NSMutableArray alloc] init];
     }
     
-    //TODO: Create a new book in App Services, then add it to the _objects array.
+    //TODO: Step 5). Create a new book in App Services, then add it to the _objects array.
     
     //This is called so our table view data is reloaded.
     [self.tableView reloadData];
@@ -89,7 +88,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    //TODO: Set the cell text label to the book's title here.
+    //TODO: Step 4). Set the cell text label to the book's title here.
     
     return cell;
 }
@@ -103,7 +102,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //TODO: Add deletion code here. You'll want to get the uuid of the book you want to delete and call the remove entity method.
+        //TODO: Step 6). Add deletion code here. You'll want to get the uuid of the book you want to delete and call the remove entity method.
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
