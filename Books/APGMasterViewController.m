@@ -30,6 +30,9 @@
     [super awakeFromNib];
 }
 
+//This is a UIView method that allows you to trigger UI Updates and other
+//view specific logic in your code. Here we are going to initialize your client
+//for the self.client property and do some pre-setup by looking up our books.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -46,16 +49,15 @@
     self.detailViewController = (APGDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 }
 
-- (void)didReceiveMemoryWarning
+//Here we need to setup our view logic for each table cell that a book represents.
+//We want the main text label to be the title of the book.
+//We want the detail label of the cell to be the book's author.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)insertNewObject:(id)sender
-{
-    //Here we perform a segue that will open the new book view.
-    [self performSegueWithIdentifier:@"newBook" sender:self];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    //TODO: Step 4). Set the cell text label to the book's title here.
+    
+    return cell;
 }
 
 //This delegate method is called after we fill out our form in the new book view
@@ -70,7 +72,32 @@
     //This is called so our table view data is reloaded.
     [self.tableView reloadData];
     
+    
+}
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [tableView beginUpdates];
+        //TODO: Step 6). Add deletion code here. You'll want to get the uuid of the book you want to delete and call the remove entity method.
+        [tableView endUpdates];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+    }
+}
+
+//IGNORE ALL CODE BELOW!
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)insertNewObject:(id)sender
+{
+    //Here we perform a segue that will open the new book view.
+    [self performSegueWithIdentifier:@"newBook" sender:self];
 }
 
 #pragma mark - Table View
@@ -85,44 +112,12 @@
     return _objects.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    //TODO: Step 4). Set the cell text label to the book's title here.
-    
-    return cell;
-}
-
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //TODO: Step 6). Add deletion code here. You'll want to get the uuid of the book you want to delete and call the remove entity method.
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }
-}
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
