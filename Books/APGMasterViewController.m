@@ -12,8 +12,6 @@
 
 #import "APGNewBookViewController.h"
 
-#import "UGClient.h"
-
 @interface APGMasterViewController () {
     NSMutableArray *_objects;
 }
