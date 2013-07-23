@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ApigeeiOSSDK/ApigeeClient.h>
 
 
 @protocol MasterViewDelegate <NSObject>
@@ -20,6 +21,7 @@
 @interface APGMasterViewController : UITableViewController<MasterViewDelegate,UISearchBarDelegate>
 
 @property (strong, nonatomic) APGDetailViewController *detailViewController;
+@property (strong, nonatomic) ApigeeClient *client;
 
 
 @end

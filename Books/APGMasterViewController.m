@@ -12,6 +12,8 @@
 
 #import "APGNewBookViewController.h"
 
+#import <ApigeeiOSSDK/ApigeeClient.h>
+
 @interface APGMasterViewController () {
     NSMutableArray *_objects;
 }
