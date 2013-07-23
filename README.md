@@ -6,6 +6,20 @@ Some important point code snippets.
 
 Things that the template is missing
 
+### SDK Setup
+This template now uses the new [Apigee iOS SDK](https://github.com/apigee/apigee-ios-sdk)
+
+You'll have to do a few things to get this new framework to work.
+
+1. Build the framework by cloning the SDK and running the following script in the command line `./Scripts/framework.sh`
+2. Add two linker flags into the build settings of your project `-ObjC -all_load`
+3. Add the following frameworks to your project
+  1. CoreGraphics
+  2. CoreLocation
+  3. CoreTelephony
+  4. SystemConfiguration
+4. Find the `ApigeeiOSSDK.framework` in the build folder of the clone SDK.
+
 ### TODOs for completion
 
 1. Setup segue to the new book view named `@"newBook"`
