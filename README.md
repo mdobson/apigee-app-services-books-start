@@ -40,7 +40,9 @@ You'll have to do a few things to get this new framework to work.
 Initializing our Objetive-C SDK.
 
 ```objective-c
-self.client = [[UGClient alloc] initWithOrganizationId:@"YOUR APIGEE.COM USERNAME" withApplicationID:@"sandbox"];
+static NSString *orgName = @"mdobson";
+static NSString *appName = @"books";
+self.client =  [[ApigeeClient alloc] initWithOrganizationId:orgName applicationId:appName];
 ```
 Creating an entity with a NSMutableDictionary Literal
 
