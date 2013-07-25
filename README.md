@@ -45,48 +45,58 @@ self.client = [[UGClient alloc] initWithOrganizationId:@"YOUR APIGEE.COM USERNAM
 Creating an entity with a NSMutableDictionary Literal
 
 ```objective-c
-NSMutableDictionary *book = @{ @"type":@"book", @"title":"The Great Gatsby", @"author":@"Fitzgerald"}; 
-UGClientResponse *response = [self.client createEntity:book];
-//Lets check if our response was accepted by the server, and add the created object to a collection called _objects
-if (response.transactionState == kUGClientResponseSuccess) {
-    [_objects insertObject:response.response[@"entities"][0] atIndex:0];
-}
+[[self.client dataClient] createEntity:@{@"type":@"book", @"title":book[@"title"], @"author":book[@"author"]} completionHandler:^(ApigeeClientResponse *response){
+        if (response.transactionState == kApigeeClientResponseSuccess) {
+            [_objects insertObject:response.response[@"entities"][0] atIndex:0];
+        } else {
+            [_objects insertObject:@{@"title":@"error"} atIndex:0];
+        }
+        [self.tableView reloadData];
+    }];
 ```
 Deleting a book
 
 ```objective-c
-[self.tableView beginUpdates];
-[_objects removeObjectAtIndex:indexPath.row];
-NSDictionary *entity = [_objects objectAtIndex:indexPath.row];
-UGClientResponse * response = [self.client removeEntity:@"book" entityID:entity[@"uuid"]];
-if (response.transactionState == kUGClientResponseSuccess) {
-   [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-}
-[self.tableView endUpdates];
+[[self.client dataClient] removeEntity:@"book"
+                  entityID:entity[@"uuid"]
+         completionHandler:^(ApigeeClientResponse *response){
+             if (response.transactionState == kApigeeClientResponseSuccess) {
+                 [_objects removeObjectAtIndex:indexPath.row];
+                 [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+             }
+         }];
 ```
+
 Retrieving books from your UserGrid account.
+
 ```objective-c
 //Getting all of your books without a filtering query.
-UGClientResponse *result = [self.client getEntities:@"book" query:nil];
-if (result.transactionState == kUGClientResponseSuccess) {
-   _objects = result.response[@"entities"];
-} else {
-   _objects = @[];
-}
+  [[self.client dataClient] getEntities:@"book" query:nil
+                        completionHandler:^(ApigeeClientResponse *result){
+                            if (result.transactionState == kApigeeClientResponseSuccess) {
+                                _objects = result.response[@"entities"];
+                            } else {
+                                _objects = @[];
+                            }
+                            [self.tableView reloadData];
+                        }];
 ```
 
 Implementing a search bar delegate method to search for books with a query
 ```objective-c
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    UGQuery * query = [[UGQuery alloc] init];
+    ApigeeQuery * query = [[ApigeeQuery alloc] init];
     [query addRequirement:[NSString stringWithFormat:@"title='%@'", searchBar.text]];
-    UGClientResponse *result = [self.client getEntities:@"book" query:query];
-    if (result.transactionState == kUGClientResponseSuccess) {
-        _objects = result.response[@"entities"];
-    } else {
-        _objects = @[];
-    }
-    [self.tableView reloadData];
+    [[self.client dataClient] getEntities:@"book"
+                                    query:query
+                        completionHandler:^(ApigeeClientResponse *result){
+                            if (result.transactionState == kApigeeClientResponseSuccess) {
+                                _objects = result.response[@"entities"];
+                            } else {
+                                _objects = @[];
+                            }
+                            [self.tableView reloadData];
+                        }];
 }
 ```
 
