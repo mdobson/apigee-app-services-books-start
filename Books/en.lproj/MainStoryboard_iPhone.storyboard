@@ -63,6 +63,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Books" id="36"/>
+                    <connections>
+                        <segue destination="5ul-Ml-Fhd" kind="modal" identifier="newBook" id="sQy-I2-kTy"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17" sceneMemberID="firstResponder"/>
             </objects>
@@ -155,6 +158,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Book Details" id="26"/>
+                    <connections>
+                        <outlet property="author" destination="Chu-cM-PL2" id="ZjN-dO-4L9"/>
+                        <outlet property="titleLabel" destination="61m-vV-9iN" id="JJO-6c-pds"/>
+                        <outlet property="uuid" destination="Y6G-vq-yHq" id="Ke4-YW-QVj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="23" sceneMemberID="firstResponder"/>
             </objects>
