@@ -55,7 +55,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    //TODO: Step 4). Set the cell text label to the book's title here.
+    NSString *title = _objects[indexPath.row][@"title"];
+    NSString *author = _objects[indexPath.row][@"author"];
+    cell.textLabel.text = title;
+    cell.detailTextLabel.text = author;
     
     return cell;
 }
