@@ -30,6 +30,7 @@
 		6326E006176A6BD40016932F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6326E004176A6BD40016932F /* InfoPlist.strings */; };
 		6326E009176A6BD40016932F /* BooksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6326E008176A6BD40016932F /* BooksTests.m */; };
 		6326E014176A71C50016932F /* APGNewBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6326E013176A71C50016932F /* APGNewBookViewController.m */; };
+		6346D9A617CF734300B5AF67 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6346D9A517CF734300B5AF67 /* Security.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		6326E008176A6BD40016932F /* BooksTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BooksTests.m; sourceTree = "<group>"; };
 		6326E012176A71C50016932F /* APGNewBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APGNewBookViewController.h; sourceTree = "<group>"; };
 		6326E013176A71C50016932F /* APGNewBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APGNewBookViewController.m; sourceTree = "<group>"; };
+		6346D9A517CF734300B5AF67 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6346D9A617CF734300B5AF67 /* Security.framework in Frameworks */,
 				6303B5A3179EDA2F003FC016 /* CoreLocation.framework in Frameworks */,
 				6303B5A4179EDA2F003FC016 /* CoreTelephony.framework in Frameworks */,
 				6303B5A5179EDA2F003FC016 /* SystemConfiguration.framework in Frameworks */,
@@ -107,6 +110,7 @@
 		6326DFC5176A6BD40016932F = {
 			isa = PBXGroup;
 			children = (
+				6346D9A517CF734300B5AF67 /* Security.framework */,
 				6326DFD7176A6BD40016932F /* Books */,
 				6326E001176A6BD40016932F /* BooksTests */,
 				6326DFD0176A6BD40016932F /* Frameworks */,
