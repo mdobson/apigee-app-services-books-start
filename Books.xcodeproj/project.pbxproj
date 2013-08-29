@@ -110,7 +110,6 @@
 		6326DFC5176A6BD40016932F = {
 			isa = PBXGroup;
 			children = (
-				6346D9A517CF734300B5AF67 /* Security.framework */,
 				6326DFD7176A6BD40016932F /* Books */,
 				6326E001176A6BD40016932F /* BooksTests */,
 				6326DFD0176A6BD40016932F /* Frameworks */,
@@ -130,6 +129,7 @@
 		6326DFD0176A6BD40016932F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6346D9A517CF734300B5AF67 /* Security.framework */,
 				631B889E17CBA72700D97134 /* ApigeeiOSSDK.framework */,
 				6303B5A0179EDA2E003FC016 /* CoreLocation.framework */,
 				6303B5A1179EDA2E003FC016 /* CoreTelephony.framework */,
